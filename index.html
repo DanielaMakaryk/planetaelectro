@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planeta Electro - Versión Gamer Final</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Kalam:wght@400;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --violeta-fluor: #BF00FF;
+            --violeta-oscuro: #3D0066;
+            --violeta-fondo: #4A148C; /* Violeta medio cálido y elegante */
+            --lila-pastel: #DCD0FF;
+            --amarillo-fluor: #CCFF00;
+            --blanco: #FFFFFF;
+            --negro-texto: #111111;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--violeta-fondo), var(--violeta-oscuro));
+            color: var(--blanco);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: var(--violeta-fluor);
+            padding: 1rem 3%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--amarillo-fluor);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .planeta-icon {
+            font-size: 32px;
+            display: inline-block;
+            animation: rotarPlaneta 6s linear infinite; /* Giro completo continuo */
+        }
+
+        @keyframes rotarPlaneta {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-texto {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--blanco);
+            margin: 0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .logo-texto:hover {
+            color: var(--amarillo-fluor);
+            text-shadow: 0 0 10px var(--amarillo-fluor);
+        }
+
+        nav { display: flex; gap: 20px; }
+        nav a {
+            text-decoration: none !important;
+            color: var(--blanco) !important;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            transition: 0.3s;
+        }
+        nav a:hover { 
+            color: var(--amarillo-fluor) !important;
+            text-shadow: 0 0 8px var(--amarillo-fluor);
+        }
+
+        .hero {
+            min-height: 250px;
+            background-color: rgba(0, 0, 0, 0.4);
+            margin: 20px 5%;
+            border: 4px dashed var(--amarillo-fluor);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .chalk-text {
+            font-family: 'Kalam', cursive;
+            font-size: clamp(2rem, 7vw, 4.5rem);
+            color: var(--blanco);
+            animation: entradaLetras 1.5s ease-out forwards, colorGiro 6s infinite alternate;
+            margin: 0 auto;
+        }
+
+        .mouse-icon {
+            display: inline-block;
+            animation: moverMouse 2.5s ease-in-out infinite; /* Simulación de uso real */
+        }
+
+        @keyframes entradaLetras {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes colorGiro {
+            0% { color: var(--blanco); }
+            100% { color: var(--amarillo-fluor); text-shadow: 0 0 15px var(--amarillo-fluor); }
+        }
+
+        @keyframes moverMouse {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(5px, -5px) rotate(5deg); }
+            50% { transform: translate(-3px, 8px) rotate(-3deg); }
+            75% { transform: translate(8px, 4px) rotate(4deg); }
+        }
+
+        /* Sección Nosotros - Optimizada en Lila Pastel para consistencia según tus indicaciones */
+        .nosotros-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 2%;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 2px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            overflow-x: auto;
+        }
+
+        .mini-card {
+            background: var(--lila-pastel); /* Fondo lila pastel destacado */
+            border: 2px solid var(--violeta-fluor);
+            padding: 10px 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            font-weight: bold;
+            color: var(--violeta-oscuro); /* Texto oscuro para máxima legibilidad */
+            transition: 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+            flex: 1;
+            max-width: 240px;
+            justify-content: center;
+        }
+        .mini-card:hover {
+            background: var(--amarillo-fluor);
+            color: var(--negro-texto);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(204,255,0,0.4);
+        }
+
+        /* Galería de 6 Productos Tecnológicos */
+        .grid-servicios {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            gap: 30px;
+            padding: 40px 5%;
+        }
+
+        .card {
+            background: var(--blanco);
+            color: var(--negro-texto);
+            padding: 30px;
+            width: 290px;
+            border-radius: 24px;
+            text-align: center;
+            transition: 0.4s;
+            border-bottom: 8px solid var(--violeta-fluor);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tag-producto {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--lila-pastel);
+            border: 1px solid var(--violeta-fluor);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--violeta-oscuro);
+            text-transform: uppercase;
+        }
+
+        .card:hover .tag-producto {
+            background: var(--amarillo-fluor);
+            border-color: var(--amarillo-fluor);
+        }
+
+        .card .prod-icon {
+            font-size: 3.5rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .card:hover .prod-icon {
+            transform: scale(1.15);
+        }
+
+        .card h3 {
+            transition: color 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            margin: 10px 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #555;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 20px 40px rgba(191,0,255,0.3); 
+        }
+        .card:hover h3 { color: var(--violeta-fluor); }
+
+        /* Formulario de Contacto Estático Limpio sin Hover Amarillo */
+        .contact-form {
+            max-width: 550px;
+            margin: 40px auto;
+            background: var(--blanco);
+            color: var(--negro-texto);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .form-titulo {
+            font-family: 'Playfair Display', serif;
+            color: var(--violeta-fluor);
+            margin-top: 0;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: #fafafa;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--violeta-fluor);
+            outline: none;
+            background: var(--blanco);
+        }
+
+        .btn-submit {
+            background: var(--lila-pastel);
+            color: var(--negro-texto);
+            border: 2px solid var(--violeta-fluor);
+            padding: 16px;
+            width: 100%;
+            border-radius: 10px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover { 
+            background: var(--amarillo-fluor); 
+            border-color: var(--amarillo-fluor);
+            box-shadow: 0 5px 15px rgba(204,255,0,0.5);
+        }
+
+        .success-box {
+            padding: 30px;
+            text-align: center;
+        }
+        .check-icon {
+            font-size: 5.5rem;
+            color: var(--violeta-fluor);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: var(--violeta-fluor);
+            color: var(--blanco);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: bold;
+            border-top: 3px solid var(--amarillo-fluor);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <span class="planeta-icon">🪐</span>
+        <h1 class="logo-texto" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Planeta Electro</h1>
+    </div>
+    <nav>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="chalk-text">Planeta Electro <span class="mouse-icon">🖱️</span></div>
+    <p style="color: var(--amarillo-fluor); font-family: 'Kalam'; font-size: 1.5rem; margin-top:12px; font-weight: bold;">Tu Universo Tecnológico</p>
+</section>
+
+<div class="nosotros-container">
+    <div class="mini-card"><span>📜</span> Garantía Asegurada</div>
+    <div class="mini-card"><span>🚚</span> Envíos Rápidos</div>
+    <div class="mini-card"><span>🛠️</span> Soporte Técnico</div>
+    <div class="mini-card"><span>🎧</span> Atención 24/7</div>
+</div>
+
+<div class="grid-servicios" id="productos">
+    <div class="card">
+        <span class="tag-producto">Nuevo</span>
+        <div class="prod-icon">💻</div>
+        <h3>Notebooks & PC</h3>
+        <p>Equipos de alta potencia para gaming, diseño avanzado y desarrollo profesional de software.</p>
+    </div>
+    <div class="card">
+        <span class="tag-producto">Popular</span>
+        <div class="prod-icon">📱</div>
+        <h3>Smartphones</h3>
+        <p>Celulares de última generación con cámaras pro y máximo rendimiento para tus apps.</p>
+    </div>
+    <div class="card">
+        <span class="tag-producto">Más Vendido</span>
+        <div class="prod-icon">📺</div>
+        <h3>Smart TV 4K</h3>
+        <p>Pantallas de alta definición con tecnología smart para disfrutar de tus plataformas de streaming.</p>
+    </div>
+    <div class="card">
+        <span class="tag-producto">Nuevo</span>
+        <div class="prod-icon">🔊</div>
+        <h3>Parlantes BT</h3>
+        <p>Sonido envolvente e inalámbrico de alta fidelidad, ideal para musicalizar tus ambientes.</p>
+    </div>
+    <div class="card">
+        <span class="tag-producto">Popular</span>
+        <div class="prod-icon">⌨️</div>
+        <h3>Teclado & Mouse</h3>
+        <p>Combos periféricos ergonómicos y mecánicos con retroiluminación RGB para máxima precisión.</p>
+    </div>
+    <div class="card">
+        <span class="tag-producto">Más Vendido</span>
+        <div class="prod-icon">🎧</div>
+        <h3>Auriculares Pro</h3>
+        <p>Audífonos con cancelación activa de ruido y micrófonos de estudio para reuniones o gaming.</p>
+    </div>
+</div>
+
+<section class="contact-form" id="contacto">
+    <div id="f-box">
+        <h2 class="form-titulo">Solicitar Presupuesto</h2>
+        <input type="text" placeholder="Nombre completo">
+        <input type="email" placeholder="Correo electrónico">
+        <textarea rows="5" placeholder="Dejanos tu consulta sobre el producto, precio, envío o garantía..."></textarea>
+        <button class="btn-submit" onclick="enviarSim()">Enviar Solicitud</button>
+    </div>
+    
+    <div id="s-box" style="display:none;" class="success-box">
+        <span class="check-icon">✓</span>
+        <h2 style="color: var(--violeta-fluor); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;">¡Solicitud Enviada!</h2>
+        <p style="font-size: 1.1rem; color: #111111; font-weight: bold;">Nos contactaremos a la brevedad con usted.</p>
+    </div>
+</section>
+
+<footer>
+    <p class="logo-texto" style="font-size: 1.4rem; margin-bottom: 5px;">Planeta Electro</p>
+    <p>Buenos Aires, Argentina | © 2023 — Derechos Reservados</p>
+</footer>
+
+<script>
+    function enviarSim() {
+        document.getElementById('f-box').style.display = 'none';
+        document.getElementById('s-box').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
+
+  
